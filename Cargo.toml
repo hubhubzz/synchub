@@ -1,0 +1,9 @@
+[package]
+name = "synchub"
+version = "0.1.0"
+edition = "2021"
+description = "A small Rust CLI for copying a local folder to Google Drive through rclone"
+
+[[bin]]
+name = "synchub"
+path = "src/main.rs"
