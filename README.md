@@ -1,5 +1,7 @@
 # SyncHub
 
+![SyncHub folder sync logo](docs/assets/synchub-logo.png)
+
 SyncHub is a Rust command-line app that uploads a local folder directly to Google Drive with the Google Drive API.
 
 SyncHub uploads new and changed files to `Drive/SyncHub/<folder-name>` and **does not delete files from Google Drive**. Use `--dry-run` first to list local files without connecting to Google.
