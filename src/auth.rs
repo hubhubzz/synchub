@@ -137,7 +137,7 @@ impl Auth {
 
         println!("Opening Google sign-in in your browser...");
         if webbrowser::open(url.as_str()).is_err() {
-            println!("Open this URL to authorize SyncHub:\n{}", url);
+            println!("Open this URL to authorize synchub:\n{}", url);
         }
         println!("Waiting for Google sign-in to finish...");
         let (mut stream, _) = listener
@@ -184,7 +184,7 @@ impl Auth {
         let token_response: TokenResponse = serde_json::from_str(&body)
             .map_err(|_| format!("Google token exchange failed: {body}"))?;
         let refresh_token = token_response.refresh_token.clone()
-            .ok_or_else(|| "Google did not issue a refresh token; revoke SyncHub access in Google Account settings and try again".to_string())?;
+            .ok_or_else(|| "Google did not issue a refresh token; revoke synchub access in Google Account settings and try again".to_string())?;
         self.save_token(token_response, refresh_token)
     }
 
@@ -242,7 +242,7 @@ fn read_callback(stream: &mut TcpStream) -> Result<Url, String> {
 
 fn write_callback_response(stream: &mut TcpStream) {
     let body =
-        "<html><body><h2>Google sign-in complete</h2><p>Return to SyncHub.</p></body></html>";
+        "<html><body><h2>Google sign-in complete</h2><p>Return to synchub.</p></body></html>";
     let response = format!("HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{}", body.len(), body);
     let _ = stream.write_all(response.as_bytes());
 }

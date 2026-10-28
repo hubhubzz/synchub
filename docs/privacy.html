@@ -3,23 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy — SyncHub</title>
+  <meta name="description" content="Privacy policy for synchub, a local app that uploads a folder you choose to Google Drive.">
+  <title>Privacy Policy — synchub</title>
   <style>body{font:16px/1.65 system-ui,sans-serif;max-width:760px;margin:7vh auto;padding:0 24px;color:#182230}a{color:#2548b8}h1{line-height:1.15}</style>
 </head>
 <body>
-  <p><a href="./">SyncHub</a></p>
+  <p><a href="./">synchub</a></p>
   <h1>Privacy Policy</h1>
   <p><strong>Effective date:</strong> October 28, 2026</p>
-  <p>SyncHub is a command-line program that runs on your computer. It connects directly to Google Drive through the Google Drive API and uploads files from the local folder you choose to the Drive folder created for SyncHub.</p>
-  <h2>Information and files</h2>
-  <p>SyncHub does not include an account service, analytics, or a SyncHub-operated server. The app sends the Google account authorization token, file names, file metadata, and selected file contents directly from your device to Google Drive to perform the upload. SyncHub does not send this information to its maintainers. Google processes it under Google's own terms and privacy notices.</p>
-  <p>SyncHub requests Google's <code>drive.file</code> permission, which is limited to files the app creates or files you explicitly open or share with it. SyncHub creates and manages files within its own Drive folder.</p>
-  <h2>Credentials</h2>
-  <p>Google sign-in uses OAuth in your system browser. SyncHub never receives your Google password. It stores an OAuth refresh token in a configuration file on your device so it can continue syncing without asking you to sign in each time. On Unix-like systems, SyncHub restricts access to that file to your user account. You can revoke access from your Google Account security settings and remove the local token file from your operating system's SyncHub configuration directory.</p>
-  <h2>Website</h2>
-  <p>This informational website is hosted by GitHub Pages. GitHub may process technical request data under its own privacy terms.</p>
-  <h2>Contact</h2>
-  <p>For questions, contact the maintainers through <a href="https://github.com/hubhubzz/synchub/issues">SyncHub's GitHub Issues</a>.</p>
-  <p>This policy describes the current project design. Review it whenever the app, website hosting, or data practices change.</p>
+  <p>This policy explains how synchub, a local Rust command-line application maintained in the <a href="https://github.com/hubhubzz/synchub">hubhubzz/synchub project</a>, accesses and handles information when you use it to upload a folder to Google Drive.</p>
+
+  <h2>How the app works</h2>
+  <p>synchub runs on your computer. You choose a local folder by running the command. The app connects directly from your computer to Google OAuth and the Google Drive API over HTTPS. synchub does not operate an account service, application server, analytics service, or cloud storage service, and it does not send your Google Drive data to the project maintainers.</p>
+
+  <h2>Google account and Drive data</h2>
+  <p>synchub requests the Google Drive <code>drive.file</code> OAuth permission. It does not request access to your Gmail, contacts, profile, or entire Drive. The app uses Drive access only to provide its sync function.</p>
+  <p>When you run a sync, synchub reads regular files within the local folder you selected, including files in its subfolders, and skips symbolic links. It reads file contents to upload them and calculates a checksum to determine whether a file has changed. It sends the selected files' names, contents, and upload metadata to Google Drive. It also reads the names, IDs, file types, and checksums needed to locate and compare files in the synchub folder it manages in Drive. It creates new files, updates changed files, and skips unchanged files. It does not delete Drive files when they are removed locally.</p>
+  <p>synchub does not request Google user data for advertising, sell or rent Google user data, use it for unrelated purposes, or transfer it to data brokers. The app has no AI features and does not use Google APIs or Google user data to train AI models or create, request, or distribute AI-generated non-consensual intimate imagery (NCII). Google API data is used only to provide the sync feature that you initiate.</p>
+
+  <h2>OAuth credentials and local storage</h2>
+  <p>Google sign-in opens in your system browser. synchub uses a temporary loopback callback on your computer and PKCE to complete authorization; the app does not receive or store your Google password. Google returns an authorization code and access credentials to the app. synchub stores the access token and refresh token in <code>synchub/google-token.json</code> inside your operating system's user configuration directory so later syncs can continue without repeated sign-in. On Unix-like systems, the app restricts the token directory to the current user and the token file to that user. On other systems, the file uses the permissions provided by the operating system. The app does not separately encrypt this local token file.
+  <p>The token remains on your device until you remove the local token file. You can also revoke synchub's access in your <a href="https://myaccount.google.com/permissions">Google Account third-party connections</a>. Revoking access may require you to authorize again before another sync.</p>
+
+  <h2>Retention and deletion</h2>
+  <p>synchub does not retain your Google Drive files or file contents on a synchub server. Uploaded copies remain in your Google Drive until you delete them there. Removing a local file does not remove its Drive copy. The OAuth token is retained locally as described above.</p>
+
+  <h2>Other services</h2>
+  <p>Google processes sign-in, OAuth credentials, and Drive transfers under its own <a href="https://policies.google.com/privacy">Privacy Policy</a> and applicable terms. This informational website is hosted by GitHub Pages; GitHub may process technical information such as network requests under its <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">Privacy Statement</a>. If you post to GitHub Issues, your post may be public. Do not include files, tokens, or other sensitive information in an issue.</p>
+
+  <h2>Your choices and contact</h2>
+  <p>You control which local folder to sync and which Google account to authorize. Use <code>synchub --dry-run &lt;folder&gt;</code> to list local files without connecting to Google. You can stop a sync, revoke access through Google Account settings, and remove the local token file. For questions about this policy or the app, contact the maintainers through <a href="https://github.com/hubhubzz/synchub/issues">synchub GitHub Issues</a>.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>This policy will be updated if the app's data practices change. The effective date above identifies the latest revision. The app will not use Google user data for a new purpose without updating its disclosures and obtaining any consent required by Google policy.</p>
+  <p>synchub's use of Google user data is subject to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements.</p>
+  <p><a href="terms.html">Terms of Service</a></p>
 </body>
 </html>

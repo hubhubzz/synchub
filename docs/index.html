@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SyncHub syncs local folders directly to Google Drive using a small Rust app.">
-  <title>SyncHub — local folders to Google Drive</title>
+  <meta name="description" content="synchub is a local command-line app that uploads a folder you choose to your Google Drive account.">
+  <title>synchub — Local folder sync to Google Drive</title>
   <style>
     :root { color-scheme: light; font: 16px/1.6 system-ui, sans-serif; color: #182230; background: #f5f7fb; }
     body { margin: 0; }
-    main { max-width: 760px; margin: 10vh auto; padding: 0 24px; }
+    main { max-width: 760px; margin: 8vh auto; padding: 0 24px; }
     .card { padding: clamp(24px, 6vw, 56px); border: 1px solid #dce3ed; border-radius: 20px; background: white; box-shadow: 0 16px 50px #1822300d; }
-    .logo { display: block; width: min(100%, 360px); height: auto; margin: 0 0 18px; }
+    .logo { display: block; width: min(100%, 390px); height: auto; margin: 0 0 20px; }
     .tag { color: #3157c8; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; }
     h1 { margin: 10px 0; font-size: clamp(2.5rem, 7vw, 4rem); line-height: 1.1; }
     .lead { max-width: 58ch; color: #485568; font-size: 1.2rem; }
@@ -23,14 +23,20 @@
 <body>
   <main>
     <section class="card">
-      <img class="logo" src="assets/synchub-logo.png" alt="SyncHub logo: a folder with circular sync arrows">
-      <div class="tag">Simple folder backup</div>
-      <h1>SyncHub</h1>
-      <p class="lead">Sync a local folder directly to Google Drive with a small Rust command-line app.</p>
-      <h2>Start with a preview</h2>
+      <img class="logo" src="assets/synchub-logo.svg" alt="synchub folder sync logo">
+      <div class="tag">Local-first Google Drive sync</div>
+      <h1>synchub</h1>
+      <p class="lead">synchub is a Rust command-line app that uploads files from a local folder you choose to your Google Drive account. It runs on your computer and connects directly to Google Drive.</p>
+
+      <h2>What synchub does</h2>
+      <p>After you authorize Google Drive access, synchub creates or updates files in <code>Drive/SyncHub/&lt;folder-name&gt;</code>. It compares local files with files in its Drive folder, skips unchanged files, and does not delete Drive files when you remove local files. Symbolic links are skipped.</p>
+      <p>synchub requests the Google Drive <code>drive.file</code> permission. It uses that access only to provide the folder upload and update feature. File names, file metadata, file contents, and the OAuth token are handled by the app on your device and sent directly to Google as needed. synchub does not operate a server that receives or stores your Google Drive data.</p>
+      <p>synchub has no AI features. It does not use Google APIs or Google user data to create, request, or distribute AI-generated non-consensual intimate imagery (NCII).</p>
+
+      <h2>Preview a sync</h2>
       <pre><code>synchub --dry-run ~/Documents</code></pre>
-      <p>When ready, run <code>synchub ~/Documents</code>. SyncHub updates changed files and keeps files on Drive if they are removed locally.</p>
-      <p><a href="https://github.com/hubhubzz/synchub">View the source on GitHub</a></p>
+      <p>A dry run lists local files without connecting to Google. To sync, run <code>synchub ~/Documents</code>.</p>
+      <p><a href="https://github.com/hubhubzz/synchub">View the source code on GitHub</a></p>
       <footer><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></footer>
     </section>
   </main>

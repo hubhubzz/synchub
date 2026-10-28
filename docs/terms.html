@@ -3,22 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Terms of Service — SyncHub</title>
+  <meta name="description" content="Terms for using synchub, a local command-line app for syncing selected folders to Google Drive.">
+  <title>Terms of Service — synchub</title>
   <style>body{font:16px/1.65 system-ui,sans-serif;max-width:760px;margin:7vh auto;padding:0 24px;color:#182230}a{color:#2548b8}h1{line-height:1.15}</style>
 </head>
 <body>
-  <p><a href="./">SyncHub</a></p>
+  <p><a href="./">synchub</a></p>
   <h1>Terms of Service</h1>
   <p><strong>Effective date:</strong> October 28, 2026</p>
-  <p>By using SyncHub, you agree to these terms. SyncHub is a local command-line tool that uploads files to Google Drive using the Google Drive API.</p>
+  <p>These terms apply when you use synchub, a Rust command-line app that runs on your computer and uploads a local folder you choose to your Google Drive account.</p>
+
   <h2>Your files and accounts</h2>
-  <p>You choose the local folder and Google account. You are responsible for having the rights and authorization to access and transfer those files, protecting your device and OAuth token, and reviewing the destination before transferring data.</p>
-  <h2>Transfers</h2>
-  <p>SyncHub uploads new files and updates files when local content changes. It does not delete Drive files when they are removed locally. Transfers depend on your local device, Google Drive, and network connection. Review Google's terms for its services.</p>
+  <p>You choose the local folder and Google account. You are responsible for having the rights and authorization to access and transfer the files, protecting your device and OAuth token, and reviewing the destination before transferring data. Google sign-in and Drive use are also subject to Google's applicable terms and policies.</p>
+
+  <h2>Sync behavior</h2>
+  <p>synchub creates or updates files in <code>Drive/SyncHub/&lt;folder-name&gt;</code>, skips unchanged files, and skips symbolic links. It does not delete Drive files when they are removed locally. You are responsible for checking the app's output and maintaining any additional backups you need.</p>
+
+  <h2>Privacy and Google access</h2>
+  <p>synchub accesses Google Drive using the <code>drive.file</code> permission and uses Google data only to provide the sync feature. Read the <a href="privacy.html">Privacy Policy</a> for details about data access, use, storage, sharing, and your choices.</p>
+
   <h2>Availability and changes</h2>
-  <p>The project is provided as-is and may change or become unavailable. You are responsible for keeping separate backups of important data and checking transfers for your needs.</p>
+  <p>synchub is provided as open-source software and may change or become unavailable. The software is provided without a guarantee that every transfer will succeed or meet a particular purpose. You are responsible for verifying the results before relying on a transfer.</p>
+
   <h2>Contact</h2>
-  <p>For questions, contact the maintainers through <a href="https://github.com/hubhubzz/synchub/issues">SyncHub's GitHub Issues</a>.</p>
-  <p>These terms are a project draft. Have them reviewed for your intended distribution and jurisdiction before relying on them as legal terms.</p>
+  <p>For questions about these terms, contact the maintainers through <a href="https://github.com/hubhubzz/synchub/issues">synchub GitHub Issues</a>. Do not include private files, access tokens, or other sensitive information in a public issue.</p>
 </body>
 </html>

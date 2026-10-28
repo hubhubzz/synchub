@@ -7,7 +7,7 @@ fn main() -> ExitCode {
     match run() {
         Ok(()) => ExitCode::SUCCESS,
         Err(error) => {
-            eprintln!("SyncHub: {error}");
+            eprintln!("synchub: {error}");
             ExitCode::FAILURE
         }
     }
@@ -60,10 +60,11 @@ fn run() -> Result<(), String> {
         return drive::print_dry_run(&local_root);
     }
 
+    println!("Privacy notice: synchub sends the names, metadata, and contents of files in the selected folder directly to Google Drive. OAuth tokens are stored on this device and sent to Google for authentication and Drive requests. synchub does not operate a server that receives your Drive data. Privacy policy: https://hubhubzz.github.io/synchub/privacy.html");
     let auth = auth::Auth::from_environment()?;
     drive::Drive::new(auth)?.sync(&local_root, drive_folder)
 }
 
 fn print_help() {
-    println!("SyncHub — sync a local folder to Google Drive\n\nUsage:\n  synchub [--dry-run] <LOCAL_FOLDER> [DRIVE_FOLDER]\n\nExamples:\n  synchub --dry-run ~/Documents\n  synchub ~/Documents\n  synchub ~/Documents MyDocumentsBackup\n\nSyncHub uploads new or changed files into Drive/SyncHub/<DRIVE_FOLDER>.\nIt keeps Drive files that are absent locally. Symlinks are skipped.\nSet SYNCHUB_CLIENT_ID for your Google Desktop OAuth client before the first sync.");
+    println!("synchub — sync a local folder to Google Drive\n\nUsage:\n  synchub [--dry-run] <LOCAL_FOLDER> [DRIVE_FOLDER]\n\nExamples:\n  synchub --dry-run ~/Documents\n  synchub ~/Documents\n  synchub ~/Documents MyDocumentsBackup\n\nsynchub uploads new or changed files into Drive/SyncHub/<DRIVE_FOLDER>.\nIt keeps Drive files that are absent locally. Symlinks are skipped.\nSet SYNCHUB_CLIENT_ID for your Google Desktop OAuth client before the first sync.\nFor data access, storage, and sharing details, see:\n  https://hubhubzz.github.io/synchub/privacy.html");
 }

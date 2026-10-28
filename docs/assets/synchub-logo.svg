@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 112" role="img" aria-labelledby="title desc">
+  <title id="title">synchub</title>
+  <desc id="desc">A folder surrounded by two sync arrows, followed by the name synchub.</desc>
+  <defs>
+    <linearGradient id="folder" x1="12" y1="20" x2="105" y2="100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1768e8"/>
+      <stop offset="1" stop-color="#133a8b"/>
+    </linearGradient>
+  </defs>
+  <path d="M12 35c0-6 4-10 10-10h27l12 13h35c6 0 10 4 10 10v39c0 6-4 10-10 10H22c-6 0-10-4-10-10V35Z" fill="url(#folder)"/>
+  <path d="M31 59a23 23 0 0 1 39-15" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="7"/>
+  <path d="m67 36 9 3-2 10" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <path d="M84 66a23 23 0 0 1-39 15" fill="none" stroke="#40d6c1" stroke-linecap="round" stroke-width="7"/>
+  <path d="m48 89-9-3 2-10" fill="none" stroke="#40d6c1" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <text x="132" y="77" fill="#132b54" font-family="Inter, ui-sans-serif, system-ui, Arial, sans-serif" font-size="60" font-weight="700" letter-spacing="-2">synchub</text>
+</svg>
