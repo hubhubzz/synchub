@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SyncHub copies local folders to Google Drive using rclone.">
+  <meta name="description" content="SyncHub syncs local folders directly to Google Drive using a small Rust app.">
   <title>SyncHub — local folders to Google Drive</title>
   <style>
     :root { color-scheme: light; font: 16px/1.6 system-ui, sans-serif; color: #182230; background: #f5f7fb; }
@@ -24,10 +24,10 @@
     <section class="card">
       <div class="tag">Simple folder backup</div>
       <h1>SyncHub</h1>
-      <p class="lead">Copy a local folder to Google Drive from a small Rust command-line app, powered by your existing rclone setup.</p>
+      <p class="lead">Sync a local folder directly to Google Drive with a small Rust command-line app.</p>
       <h2>Start with a preview</h2>
-      <pre><code>synchub --dry-run ~/Documents gdrive:Backups/Documents</code></pre>
-      <p>When the preview looks right, run the same command without <code>--dry-run</code>. SyncHub keeps extra files on Drive; it does not delete them.</p>
+      <pre><code>synchub --dry-run ~/Documents</code></pre>
+      <p>When ready, run <code>synchub ~/Documents</code>. SyncHub updates changed files and keeps files on Drive if they are removed locally.</p>
       <p><a href="https://github.com/hubhubzz/synchub">View the source on GitHub</a></p>
       <footer><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></footer>
     </section>

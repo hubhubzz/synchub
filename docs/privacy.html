@@ -10,11 +10,12 @@
   <p><a href="./">SyncHub</a></p>
   <h1>Privacy Policy</h1>
   <p><strong>Effective date:</strong> October 28, 2026</p>
-  <p>SyncHub is a command-line program that runs on your computer. It starts the separate rclone program to copy files from a folder you choose to a Google Drive destination you choose.</p>
+  <p>SyncHub is a command-line program that runs on your computer. It connects directly to Google Drive through the Google Drive API and uploads files from the local folder you choose to the Drive folder created for SyncHub.</p>
   <h2>Information and files</h2>
-  <p>SyncHub does not include an account service, analytics, or a SyncHub-operated server. The SyncHub program does not send usage data to its maintainers. The files you select are transferred by rclone to the Google Drive account configured in rclone. Google and rclone may process information as described in their own terms and privacy notices.</p>
+  <p>SyncHub does not include an account service, analytics, or a SyncHub-operated server. The app sends the Google account authorization token, file names, file metadata, and selected file contents directly from your device to Google Drive to perform the upload. SyncHub does not send this information to its maintainers. Google processes it under Google's own terms and privacy notices.</p>
+  <p>SyncHub requests Google's <code>drive.file</code> permission, which is limited to files the app creates or files you explicitly open or share with it. SyncHub creates and manages files within its own Drive folder.</p>
   <h2>Credentials</h2>
-  <p>Google Drive authorization is handled by rclone and stored in rclone's local configuration. SyncHub does not read, collect, or transmit your Google password or OAuth token separately. Protect your computer and rclone configuration as you would other credentials.</p>
+  <p>Google sign-in uses OAuth in your system browser. SyncHub never receives your Google password. It stores an OAuth refresh token in a configuration file on your device so it can continue syncing without asking you to sign in each time. On Unix-like systems, SyncHub restricts access to that file to your user account. You can revoke access from your Google Account security settings and remove the local token file from your operating system's SyncHub configuration directory.</p>
   <h2>Website</h2>
   <p>This informational website is hosted by GitHub Pages. GitHub may process technical request data under its own privacy terms.</p>
   <h2>Contact</h2>

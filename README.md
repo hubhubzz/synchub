@@ -1,40 +1,47 @@
 # SyncHub
 
-SyncHub is a small Rust command-line app that copies a local folder to Google Drive. It uses your existing [rclone](https://rclone.org/) installation and Google Drive remote configuration, so OAuth tokens stay in rclone's local config.
+SyncHub is a Rust command-line app that uploads a local folder directly to Google Drive with the Google Drive API.
 
-SyncHub runs `rclone copy`: it uploads new or changed files and **does not delete files from Google Drive**. Use `--dry-run` first to preview transfers.
-
-Google sign-in is handled by rclone's OAuth client. The Google consent screen for this MVP will identify rclone; SyncHub does not yet have its own OAuth client or branded Google consent screen. A branded OAuth flow requires a separate Google OAuth implementation and an owned, verified web domain.
+SyncHub uploads new and changed files to `Drive/SyncHub/<folder-name>` and **does not delete files from Google Drive**. Use `--dry-run` first to list local files without connecting to Google.
 
 ## Requirements
 
 - Rust and Cargo
-- [rclone](https://rclone.org/install/)
-- A Google Drive remote configured in rclone
+- A Google Cloud project with the Google Drive API enabled
+- A Google OAuth client of type **Desktop app**
 
-Configure a Drive remote by running `rclone config`, choosing `n` for a new remote, naming it `gdrive`, and selecting Google Drive (`drive`). At the client ID and secret prompts, use your own Google OAuth credentials; rclone's shared Google Drive client ID is being retired during 2026. Enable the Google Drive API in your Google Cloud project and complete OAuth app setup before entering those credentials. Keep the client secret out of this repository. Follow rclone's browser sign-in flow, then confirm the remote with:
+Create a Desktop app OAuth client in Google Cloud Console and set its client ID before the first run:
 
 ```sh
-rclone lsd gdrive:
+export SYNCHUB_CLIENT_ID="your-client-id.apps.googleusercontent.com"
+export SYNCHUB_CLIENT_SECRET="your-client-secret" # optional
 ```
 
-Google requires OAuth app home and policy links to use a domain you own and verify. The GitHub repository and default `github.io` address are useful for public project pages, but they are not an owned domain for Google OAuth verification. Add your custom domain to GitHub Pages and verify its root domain in Google Search Console before using the links in a production OAuth consent screen.
+The secret is optional for the Desktop OAuth flow. Do not commit it. On the first sync, SyncHub opens Google's sign-in page in your system browser and saves a refresh token in your operating system's user configuration directory. On Unix, the token directory and file are restricted to the current user.
+
+The app requests the `drive.file` scope, which limits access to files created by SyncHub. OAuth branding and verification for production require a public home page and policy links on a domain you own and verify. The GitHub Pages default domain is not an owned domain for Google OAuth verification.
 
 ## Run
 
-Preview what would be copied:
+Preview the local files SyncHub would process:
 
 ```sh
-cargo run -- --dry-run /path/to/local-folder gdrive:Backups/MyFolder
+cargo run -- --dry-run /path/to/local-folder
 ```
 
 Copy the files:
 
 ```sh
-cargo run -- /path/to/local-folder gdrive:Backups/MyFolder
+cargo run -- /path/to/local-folder
 ```
 
-The source folder's contents are copied into the destination path. SyncHub does not implement two-way synchronization, scheduling, or deletion propagation.
+By default, the Google Drive folder has the same name as the local folder. Pass a second argument to choose a different Drive folder name:
+
+```sh
+cargo run -- /path/to/local-folder MyDriveBackup
+```
+
+SyncHub creates folders as needed, uploads new files, updates files with changed contents, and skips unchanged files. It does not remove Drive files when they are deleted locally. Symbolic links are skipped.
 
 ## Build
 
@@ -54,4 +61,4 @@ Enable GitHub Pages in the repository settings with **Deploy from a branch**, br
 
 ## Third-party software
 
-SyncHub invokes rclone as a separate installed program. rclone is not bundled with this repository; its license and notices are available from the [rclone project](https://github.com/rclone/rclone).
+Google Drive authentication, file names, and file contents are sent directly from SyncHub to Google. SyncHub does not use a SyncHub-operated server or analytics service.
